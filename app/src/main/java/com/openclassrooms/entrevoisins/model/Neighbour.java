@@ -1,11 +1,14 @@
 package com.openclassrooms.entrevoisins.model;
 
+import android.app.Application;
+
 import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
  */
 public class Neighbour {
+
 
     /** Identifier */
     private long id;
@@ -25,6 +28,8 @@ public class Neighbour {
     /** About me */
     private String aboutMe;
 
+    private boolean isFavorite;
+
     /**
      * Constructor
      * @param id
@@ -39,6 +44,7 @@ public class Neighbour {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
+        this.isFavorite = isFavorite;
     }
 
     public long getId() {
@@ -87,6 +93,14 @@ public class Neighbour {
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite();
+    }
+
+    public void setIsFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite();
     }
 
     @Override
