@@ -86,7 +86,7 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
         mAddFavoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isFavorite) {
+                if(!isFavorite) {
                     mAddFavoriteButton.setImageResource(R.drawable.ic_baseline_star_24);
                     addFavoriteNeighbour(mNeighbour);
                     Toast.makeText(getApplicationContext(), "Ajouté aux favoris", Toast.LENGTH_SHORT).show();
@@ -98,6 +98,7 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void addFavoriteNeighbour (Neighbour neighbour) {
