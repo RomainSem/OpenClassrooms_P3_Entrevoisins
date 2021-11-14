@@ -100,7 +100,7 @@ public class NeighbourFragment extends Fragment {
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                         Neighbour neighbour = mNeighbours.get(position);
                         Intent profileNeighbourActivity = new Intent(getContext(), ProfileNeighbourActivity.class);
-                       // ProfileNeighbourActivity.putExtra("NEIGHBOUR", neighbour);
+                        profileNeighbourActivity.putExtra("NEIGHBOUR", neighbour);
                         startActivity(profileNeighbourActivity);
                     }
                 });

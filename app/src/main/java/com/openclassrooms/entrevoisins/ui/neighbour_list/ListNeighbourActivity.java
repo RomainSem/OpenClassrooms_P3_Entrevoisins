@@ -1,9 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
 
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -25,8 +23,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
     Toolbar mToolbar;
     @BindView(R.id.container)
     ViewPager mViewPager;
-    @BindView(R.id.randombutton)
-    Button mRandomButton;
 
     ListNeighbourPagerAdapter mPagerAdapter;
 
@@ -42,13 +38,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        mRandomButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListNeighbourActivity.this, ProfileNeighbourActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 

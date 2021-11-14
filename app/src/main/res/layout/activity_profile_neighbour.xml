@@ -9,17 +9,6 @@
     tools:context=".ui.neighbour_list.ProfileNeighbourActivity">
 
 
-  <androidx.appcompat.widget.Toolbar
-      android:id="@+id/profile_toolbar"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@null"
-      android:minHeight="?attr/actionBarSize"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-
   <ImageView
       android:id="@+id/profile_avatar"
       android:layout_width="match_parent"
@@ -28,24 +17,24 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/ic_account" />
+      tools:srcCompat="@drawable/ic_account" />
 
-  <EditText
+  <TextView
       android:id="@+id/profile_name"
       android:layout_width="wrap_content"
       android:layout_height="48dp"
-      android:layout_marginStart="8dp"
+      android:layout_marginStart="16dp"
       android:layout_marginBottom="32dp"
       android:background="@android:color/transparent"
       android:ems="10"
       android:focusable="false"
       android:focusableInTouchMode="false"
       android:importantForAutofill="no"
-      android:inputType="textPersonName"
-      android:text="Name"
+      android:textColor="#FFFFFF"
       android:textSize="28sp"
       app:layout_constraintBottom_toBottomOf="@+id/profile_avatar"
-      app:layout_constraintStart_toStartOf="@+id/profile_avatar" />
+      app:layout_constraintStart_toStartOf="@+id/profile_avatar"
+      tools:text="Name" />
 
 
   <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -56,12 +45,12 @@
       android:clickable="true"
       android:contentDescription="@string/put_in_fav"
       android:focusable="true"
+      android:src="@drawable/ic_star_white_24dp"
       android:tint="#FFC107"
       app:backgroundTint="#FFFFFF"
       app:layout_constraintBottom_toTopOf="@+id/cardView2"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/profile_avatar"
-      app:srcCompat="@drawable/ic_star_border_white_24dp" />
+      app:layout_constraintTop_toBottomOf="@+id/profile_avatar" />
 
 
   <androidx.cardview.widget.CardView
@@ -80,7 +69,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-      <EditText
+      <TextView
           android:id="@+id/profile_name2"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -89,9 +78,8 @@
           android:importantForAutofill="no"
           android:focusable="false"
           android:focusableInTouchMode="false"
-          android:inputType="textPersonName"
           android:padding="12dp"
-          android:text="Name"
+          tools:text="Name"
           android:textSize="24sp" />
 
       <View
@@ -103,7 +91,7 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:gravity="center"
+          android:layout_marginTop="16dp"
           android:orientation="horizontal">
 
         <ImageView
@@ -114,26 +102,24 @@
             android:contentDescription="AddressIcon"
             app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
-        <EditText
+        <TextView
             android:id="@+id/profile_address"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:background="@android:color/transparent"
             android:clickable="false"
-            android:importantForAutofill="no"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:inputType="textPostalAddress"
-            android:text="Address"
-            android:textSize="14sp" />
+            android:importantForAutofill="no"
+            android:textSize="14sp"
+            tools:text="Address" />
 
       </LinearLayout>
 
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:gravity="center"
           android:orientation="horizontal">
 
         <ImageView
@@ -144,7 +130,7 @@
             android:contentDescription="PhoneIcon"
             app:srcCompat="@drawable/ic_baseline_local_phone_24" />
 
-        <EditText
+        <TextView
             android:id="@+id/profile_phone"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -154,10 +140,10 @@
             android:importantForAutofill="no"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:text="Phone"
+            tools:text="Phone"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            android:inputType="phone" />
+             />
 
 
       </LinearLayout>
@@ -165,7 +151,6 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:gravity="center"
           android:orientation="horizontal">
 
         <ImageView
@@ -175,18 +160,17 @@
             android:layout_marginStart="16dp"
             app:srcCompat="@drawable/ic_baseline_rss_feed_24" />
 
-        <EditText
-            android:id="@+id/profile_link"
+        <TextView
+            android:id="@+id/profile_socialmedia"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
             android:background="@android:color/transparent"
             android:ems="10"
             android:importantForAutofill="no"
-            android:inputType="textWebEditText"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:text="Facebook"
+            tools:text="Facebook"
             android:textSize="14sp" />
 
       </LinearLayout>
@@ -218,8 +202,8 @@
           android:layout_marginStart="8dp"
           android:layout_marginTop="16dp"
           android:background="@android:color/transparent"
-          android:contentDescription="A propos de moi"
-          android:text="A propos de moi"
+          android:contentDescription="@string/a_propos_de_moi"
+          android:text="@string/a_propos_de_moi"
           android:textSize="24sp" />
 
       <View
@@ -229,25 +213,39 @@
           android:layout_marginTop="4dp"
           android:background="?android:attr/listDivider" />
 
-      <EditText
+      <TextView
           android:id="@+id/profile_description"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
+          android:gravity="start"
           android:layout_marginStart="8dp"
-          android:layout_marginTop="24dp"
+          android:layout_marginTop="16dp"
           android:layout_marginEnd="8dp"
           android:layout_marginBottom="8dp"
           android:background="@android:color/transparent"
           android:importantForAutofill="no"
-          android:inputType="textLongMessage"
           android:focusable="false"
           android:focusableInTouchMode="false"
           android:minHeight="48dp"
-          android:text="Description"
+          tools:text="Description"
           android:textSize="14sp" />
 
     </LinearLayout>
   </androidx.cardview.widget.CardView>
+
+
+
+  <ImageButton
+      android:id="@+id/back_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
+      android:background="@color/transparent"
+      android:backgroundTint="@color/transparent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

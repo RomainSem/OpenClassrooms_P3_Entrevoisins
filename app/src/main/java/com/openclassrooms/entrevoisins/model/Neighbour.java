@@ -2,12 +2,13 @@ package com.openclassrooms.entrevoisins.model;
 
 import android.app.Application;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
  */
-public class Neighbour {
+public class Neighbour implements Serializable {
 
 
     /** Identifier */
@@ -96,12 +97,13 @@ public class Neighbour {
     }
 
     public boolean isFavorite() {
-        return isFavorite();
+        return isFavorite;
     }
 
     public void setIsFavorite(boolean isFavorite) {
-        this.isFavorite = isFavorite();
+        this.isFavorite = isFavorite;
     }
+
 
     @Override
     public boolean equals(Object o) {
