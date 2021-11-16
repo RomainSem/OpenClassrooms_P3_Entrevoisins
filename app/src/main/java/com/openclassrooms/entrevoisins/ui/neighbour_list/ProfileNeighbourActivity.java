@@ -2,6 +2,13 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -36,12 +43,12 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
     private FloatingActionButton mAddFavoriteButton;
 
     private Neighbour mNeighbour;
-    private NeighbourApiService mFavoriteNeighbour;
+    private NeighbourApiService mApiService;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mFavoriteNeighbour = DI.getNeighbourApiService();
+        mApiService = DI.getNeighbourApiService();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_neighbour);
 
@@ -57,12 +64,7 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
 
         Objects.requireNonNull(getSupportActionBar()).hide(); // Cache l'action BAR
 
-        mBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        mBackButton.setOnClickListener(view -> onBackPressed());
 
         mNeighbour = (Neighbour) getIntent().getSerializableExtra("NEIGHBOUR");
         name = mNeighbour.getName();
@@ -79,23 +81,22 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
                 .load(mNeighbour.getAvatarUrl())
                 .into(mProfileAvatar);
 
+        mAddFavoriteButton.setImageResource(isFavorite ? R.drawable.ic_baseline_star_24 : R.drawable.ic_star_white_24dp);
 
 
 
-
-        mAddFavoriteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!isFavorite) {
-                    mAddFavoriteButton.setImageResource(R.drawable.ic_baseline_star_24);
-                    addFavoriteNeighbour(mNeighbour);
-                    Toast.makeText(getApplicationContext(), "Ajouté aux favoris", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    mAddFavoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
-                    deleteFavorite(mNeighbour);
-                    Toast.makeText(getApplicationContext(), "Supprimé des favoris", Toast.LENGTH_SHORT).show();
-                }
+        mAddFavoriteButton.setOnClickListener(view -> {
+            if(!isFavorite) {
+                mAddFavoriteButton.setImageResource(R.drawable.ic_baseline_star_24);
+                mAddFavoriteButton.setColorFilter(ContextCompat.getColor(R.color.yellow), android.graphics.PorterDuff.Mode.MULTIPLY); // A CHANGÉ
+                addFavoriteNeighbour(mNeighbour);
+                Toast.makeText(getApplicationContext(), "Ajouté aux favoris", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                mAddFavoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
+                mAddFavoriteButton.setColorFilter(R.color.white);
+                deleteFavorite(mNeighbour);
+                Toast.makeText(getApplicationContext(), "Supprimé des favoris", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -103,16 +104,20 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
 
     private void addFavoriteNeighbour (Neighbour neighbour) {
         isFavorite = true;
-        mNeighbour.setIsFavorite(isFavorite);
-        mFavoriteNeighbour.modifyNeighbour(neighbour);
-        mFavoriteNeighbour.createFavoriteNeighbour(neighbour);
+        mApiService.setIsFavorite(neighbour.getId(), isFavorite);
+
     }
 
     private void deleteFavorite (Neighbour neighbour) {
         isFavorite = false;
-        mNeighbour.setIsFavorite(isFavorite);
-        mFavoriteNeighbour.modifyNeighbour(neighbour);
-        mFavoriteNeighbour.deleteFavoriteNeighbour(neighbour);
+        mApiService.setIsFavorite(neighbour.getId(), isFavorite);
+
+    }
+
+    public static void navigate(Context context, Neighbour neighbour) {
+        Intent intent = new Intent(context, ProfileNeighbourActivity.class);
+        intent.putExtra("NEIGHBOUR", neighbour);
+        ActivityCompat.startActivity(context, intent, null);
     }
 
 

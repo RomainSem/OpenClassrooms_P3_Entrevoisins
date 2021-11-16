@@ -2,6 +2,7 @@ package com.openclassrooms.entrevoisins.service;
 
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
 public class DummyNeighbourApiService implements NeighbourApiService {
 
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
-    private List<Neighbour> favoriteNeighbours = DummyNeighbourGenerator.generateFavoriteNeighbours();
+
 
 
     /**
@@ -23,12 +24,14 @@ public class DummyNeighbourApiService implements NeighbourApiService {
 
     @Override
     public List<Neighbour> getFavoriteNeighbours(){
-        favoriteNeighbours.clear();
-        for (Neighbour neighbour : getNeighbours())
-            if (neighbour.isFavorite()) {
-                favoriteNeighbours.add(neighbour);
+        List<Neighbour> favoriteNeighbours = new ArrayList<>();
+        for(Neighbour n: neighbours) {
+            if(n.isFavorite()){
+                favoriteNeighbours.add(n);
             }
-        return favoriteNeighbours;
+        }
+
+        return  favoriteNeighbours;
     }
 
 
@@ -50,15 +53,14 @@ public class DummyNeighbourApiService implements NeighbourApiService {
         neighbours.add(neighbour);
     }
 
-    public void createFavoriteNeighbour(Neighbour neighbour) {
-        favoriteNeighbours.add(neighbour);
+    @Override
+    public void setIsFavorite(long neighbourId, boolean isFavorite) {
+        for (Neighbour n: neighbours) {
+            if(n.getId()== neighbourId){
+                n.setIsFavorite(isFavorite);
+            }
+        }
     }
 
-    public void deleteFavoriteNeighbour(Neighbour neighbour) {
-        favoriteNeighbours.remove(neighbour);
-    }
 
-    public void modifyNeighbour(Neighbour neighbour) {
-        neighbours.set(neighbours.indexOf(neighbour), neighbour);
-    }
 }

@@ -32,11 +32,9 @@ public interface NeighbourApiService {
 
 
 
-    void deleteFavoriteNeighbour(Neighbour neighbour);
+    void setIsFavorite(long neighbourId, boolean isFavorite);
 
-    void createFavoriteNeighbour(Neighbour neighbour);
 
-    void modifyNeighbour(Neighbour neighbour);
 }
 
 

@@ -45,7 +45,7 @@ public class Neighbour implements Serializable {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.aboutMe = aboutMe;
-        this.isFavorite = isFavorite;
+        this.isFavorite = false;
     }
 
     public long getId() {

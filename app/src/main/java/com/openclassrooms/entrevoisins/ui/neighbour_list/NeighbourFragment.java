@@ -21,7 +21,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
-import com.openclassrooms.entrevoisins.utils.ItemClickSupport;
+
 
 
 public class NeighbourFragment extends Fragment {
@@ -53,7 +53,7 @@ public class NeighbourFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        this.configureOnClickRecyclerView();
+
         return view;
     }
 
@@ -93,18 +93,7 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-    private void configureOnClickRecyclerView() {
-        ItemClickSupport.addTo(mRecyclerView, R.layout.fragment_neighbour_list)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-                    @Override
-                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Neighbour neighbour = mNeighbours.get(position);
-                        Intent profileNeighbourActivity = new Intent(getContext(), ProfileNeighbourActivity.class);
-                        profileNeighbourActivity.putExtra("NEIGHBOUR", neighbour);
-                        startActivity(profileNeighbourActivity);
-                    }
-                });
-    }
+
 
 
 }
