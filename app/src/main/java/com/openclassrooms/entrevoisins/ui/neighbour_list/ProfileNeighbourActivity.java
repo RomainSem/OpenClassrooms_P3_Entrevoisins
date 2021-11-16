@@ -81,25 +81,30 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
                 .load(mNeighbour.getAvatarUrl())
                 .into(mProfileAvatar);
 
+
+
         mAddFavoriteButton.setImageResource(isFavorite ? R.drawable.ic_baseline_star_24 : R.drawable.ic_star_white_24dp);
 
-
+        setFavoriteButtonColor(isFavorite);
 
         mAddFavoriteButton.setOnClickListener(view -> {
             if(!isFavorite) {
-                mAddFavoriteButton.setImageResource(R.drawable.ic_baseline_star_24);
-                mAddFavoriteButton.setColorFilter(ContextCompat.getColor(R.color.yellow), android.graphics.PorterDuff.Mode.MULTIPLY); // A CHANGÉ
+                setFavoriteButtonColor(true);
                 addFavoriteNeighbour(mNeighbour);
                 Toast.makeText(getApplicationContext(), "Ajouté aux favoris", Toast.LENGTH_SHORT).show();
             }
             else{
-                mAddFavoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
-                mAddFavoriteButton.setColorFilter(R.color.white);
+                setFavoriteButtonColor(false);
                 deleteFavorite(mNeighbour);
                 Toast.makeText(getApplicationContext(), "Supprimé des favoris", Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+
+    private void setFavoriteButtonColor(Boolean isFavorite) {
+        int colorId = isFavorite ? android.R.color.holo_orange_light : R.color.black;
+        mAddFavoriteButton.getDrawable().setTint(getResources().getColor(colorId));
     }
 
     private void addFavoriteNeighbour (Neighbour neighbour) {
