@@ -17,5 +17,5 @@ Vous aurez également besoin d'utiliser l'émulateur d'Android Studio ou de conn
 
 # Exectuer l'application
 
-Une fois que vous aurez configurer l'émulateur ou branché votre appareil en USB, vous pourrez executer lancer  la compilation de 
-l'application via le bouton "Run" en haut à droite dans Android Studio (ou via le raccourci CTRL + R).
+Une fois que vous aurez configurer l'émulateur ou branché votre appareil en USB, vous pourrez lancer la compilation de 
+l'application et l'executer via le bouton "Run" en haut à droite dans Android Studio (ou via le raccourci CTRL + R).
