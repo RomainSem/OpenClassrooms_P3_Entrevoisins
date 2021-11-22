@@ -82,9 +82,6 @@ public class ProfileNeighbourActivity extends AppCompatActivity {
                 .into(mProfileAvatar);
 
 
-
-        mAddFavoriteButton.setImageResource(isFavorite ? R.drawable.ic_baseline_star_24 : R.drawable.ic_star_white_24dp);
-
         setFavoriteButtonColor(isFavorite);
 
         mAddFavoriteButton.setOnClickListener(view -> {

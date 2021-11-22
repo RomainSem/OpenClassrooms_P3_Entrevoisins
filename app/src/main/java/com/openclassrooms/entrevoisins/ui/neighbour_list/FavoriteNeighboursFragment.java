@@ -28,19 +28,15 @@ public class FavoriteNeighboursFragment extends Fragment {
     private List<Neighbour> mFavoriteNeighbours;
     private RecyclerView mRecyclerView;
 
+
+    /**
+     * Create and return a new instance
+     * @return @{@link FavoriteNeighboursFragment}
+     */
     public static FavoriteNeighboursFragment newInstance() {
         return new FavoriteNeighboursFragment();
     }
 
-
-    public static FavoriteNeighboursFragment newInstance(String param1, String param2) {
-        FavoriteNeighboursFragment fragment = new FavoriteNeighboursFragment();
-        return fragment;
-    }
-
-    public FavoriteNeighboursFragment() {
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,12 +53,15 @@ public class FavoriteNeighboursFragment extends Fragment {
         Context context = view.getContext();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
 
         initFavoriteList();
         return view;
     }
 
+    /**
+     * Init the List of favorite neighbours
+     */
     private void initFavoriteList(){
         mFavoriteNeighbours = mApiService.getFavoriteNeighbours();
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavoriteNeighbours));
@@ -86,6 +85,10 @@ public class FavoriteNeighboursFragment extends Fragment {
         EventBus.getDefault().unregister(this);
     }
 
+    /**
+     * Fired if the user clicks on a delete button
+     * @param event
+     */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
