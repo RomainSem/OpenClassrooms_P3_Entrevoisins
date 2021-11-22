@@ -7,7 +7,7 @@ L'application contient plusieurs fonctionnalités :
   * Ajout d'un voisin
   * Suppression d'un voisin
   * Affichage du profil d'un voisin
-  * Mise en favoris du voisin que l'on veut
+  * Ajout d'un voisin en favoris
   * Affichage de la liste des favoris
 
 # Prérequis
